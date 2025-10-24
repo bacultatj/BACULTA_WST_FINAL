@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MangaReader App</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #ff6f61;
+            padding: 15px 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            background-color: #ff6f61;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #ff4b3a;
+        }
+        section {
+            display: none;
+            padding: 50px 20px;
+        }
+        .hero {
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background-color: #fff;
+            padding: 60px 20px;
+        }
+        .feature {
+            flex: 1 1 250px;
+            margin: 20px;
+            text-align: center;
+        }
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #ff6f61;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+        .login-container {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: 50px auto;
+        }
+        .login-container h2 {
+            color: #ff6f61;
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #ff6f61;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #ff4b3a;
+        }
+        .login-container a {
+            display: block;
+            margin-top: 15px;
+            color: #ff6f61;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .reader-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        .manga-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .manga-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 200px;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .manga-card:hover {
+            transform: translateY(-5px);
+        }
+        .manga-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        .manga-card h3 {
+            padding: 10px;
+            font-size: 1.1rem;
+            color: #ff6f61;
+        }
+        .reader-view {
+            text-align: center;
+        }
+        .reader-view img {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            margin-top: 20px;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MangaReader</h1>
+        <nav>
+            <a onclick="showSection('home')">Home</a>
+            <a onclick="showSection('login')">Login</a>
+            <a onclick="showSection('reader')">Library</a>
+        </nav>
+    </header>
+
+    <section id="home" class="active">
+        <div class="hero">
+            <h2>Read Your Favorite Manga Anytime, Anywhere</h2>
+            <p>Discover thousands of manga and comics online. Download chapters, customize themes, and enjoy seamless reading!</p>
+            <button class="btn" onclick="showSection('login')">Get Started</button>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <h3>Huge Library</h3>
+                <p>Thousands of manga and comics at your fingertips.</p>
+            </div>
+            <div class="feature">
+                <h3>Offline Mode</h3>
+                <p>Download chapters to read without internet.</p>
+            </div>
+            <div class="feature">
+                <h3>Dark Mode</h3>
+                <p>Comfortable reading experience anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="login">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form onsubmit="login(event)">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <a onclick="showSection('home')">Back to Home</a>
+        </div>
+    </section>
+
+    <section id="reader">
+        <div class="reader-container">
+            <h2 style="text-align:center; margin-bottom:30px;">Manga Library</h2>
+            <div id="manga-list" class="manga-list"></div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 MangaReader. All rights reserved.
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            if(sectionId === 'reader') loadManga();
+        }
+
+        const mangaList = [
+            { title: "Naruto", image: "https://via.placeholder.com/200x280?text=Naruto" },
+            { title: "One Piece", image: "https://via.placeholder.com/200x280?text=One+Piece" },
+            { title: "Attack on Titan", image: "https://via.placeholder.com/200x280?text=AOT" },
+            { title: "My Hero Academia", image: "https://via.placeholder.com/200x280?text=MHA" }
+        ];
+
+        function loadManga() {
+            const container = document.getElementById("manga-list");
+            container.innerHTML = '';
+            mangaList.forEach(manga => {
+                const card = document.createElement("div");
+                card.className = "manga-card";
+                card.innerHTML = `
+                    <img src="${manga.image}" alt="${manga.title}">
+                    <h3>${manga.title}</h3>
+                `;
+                card.addEventListener("click", () => openReader(manga));
+                container.appendChild(card);
+            });
+        }
+
+        function openReader(manga) {
+            const container = document.querySelector(".reader-container");
+            container.innerHTML = `
+                <div class="reader-view">
+                    <h2>${manga.title}</h2>
+                    <img src="${manga.image}" alt="${manga.title}">
+                    <p>Enjoy reading ${manga.title}!</p>
+                    <button class="btn back-btn" onclick="showSection('reader')">Back to Library</button>
+                </div>
+            `;
+        }
+
+        function login(event){
+            event.preventDefault();
+            alert('Logged in successfully!');
+            showSection('reader');
+        }
+    </script>
+</body>
+</html>
